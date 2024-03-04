@@ -33,6 +33,8 @@ state = T3State(ODDS_STARTS, START_STATE)
 players_turn = not (ODDS_STARTS ^ PLAYER_ODDS)
 act = None
 
+
+
 # Main game loop: keep placing tiles until a terminal
 while not state.is_tie() and not state.is_win():
     print("\n" + str(state))
@@ -61,6 +63,8 @@ while not state.is_tie() and not state.is_win():
 
     state = state.get_next_state(act)
     players_turn = not players_turn
+
+
 
 print("\n********************************")
 print(("[L] You got dunked on!" if players_turn else "[W] You are the T3 elite!") if state.is_win()

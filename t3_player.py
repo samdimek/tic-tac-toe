@@ -29,6 +29,7 @@ def choose(state: "T3State") -> Optional["T3Action"]:
     return max_value(state, float('-inf'), float('inf'), 0)[1]
 
 
+
 def max_value(state: "T3State", alpha: int, beta: int, depth: int) -> Tuple[int, Optional["T3Action"]]:
     if terminal_test(state):
         return utility(state), None
@@ -80,6 +81,15 @@ def terminal_test(state: "T3State") -> bool:
     bool: True if the state is terminal, False otherwise.
     """
     return state.is_win() or state.is_tie()
+
+def utility(state: T3State) -> int:
+    if state.is_win():
+        return 1 if state.is_odd_turn() else -1
+    elif state.is_tie():
+        return 0
+    else:
+        raise ValueError("Utility called on non-terminal state")
+
 
 
 def possible_actions(state: "T3State") -> List["T3Action"]:
