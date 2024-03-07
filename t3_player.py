@@ -83,12 +83,22 @@ def terminal_test(state: "T3State") -> bool:
     return state.is_win() or state.is_tie()
 
 def utility(state: T3State) -> int:
+    """
+    Calculate the utility value of a given state for the player whose turn it is.
+
+    Parameters:
+    state (T3State): The current state of the game.
+
+    Returns:
+    int: The utility value of the state. Returns 1 if the player wins, -1 if the opponent wins, and 0 for a tie or non-terminal state.
+    """
     if state.is_win():
-        return 1 if state.is_odd_turn() else -1
+        return 1 if state._odd_turn else -1
     elif state.is_tie():
         return 0
     else:
         raise ValueError("Utility called on non-terminal state")
+
 
 
 
